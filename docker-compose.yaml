@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+    s1:
+        image: hello-world
+    s2:
+        image: hello-world
+    s3:
+        image: hello-world
+    s4:
+        image: hello-world
+    s5:
+        image: hello-world

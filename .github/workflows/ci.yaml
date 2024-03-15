@@ -1,0 +1,40 @@
+name: CI
+
+"on":
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    castor:
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: false
+            matrix:
+                cmd:
+                    - ansi-raw
+                    - ansi-false
+                    - ansi-pty
+                    - ansi-tty
+                    - no-ansi-raw
+                    - no-ansi-false
+                    - no-ansi-pty
+                    - no-ansi-tty
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.2
+                  tools: castor
+
+            - run: |
+                  set -ex
+                  castor debug
+                  env
+                  castor ${{ matrix.cmd }}
