@@ -33,6 +33,11 @@ jobs:
                   php-version: 8.2
                   tools: castor
 
+            - name: Load docker composer custom build
+              run: |
+                  set -ex
+                  sudo \cp docker-compose /usr/libexec/docker/cli-plugins/docker-compose
+
             - run: |
                   set -ex
                   castor debug
