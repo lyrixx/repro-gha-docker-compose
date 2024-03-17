@@ -41,5 +41,4 @@ jobs:
             - run: |
                   set -ex
                   castor debug
-                  env
                   castor ${{ matrix.cmd }}
